@@ -3,6 +3,7 @@ package com.acm.verywild.acm
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.acm.verywild.acm.data.db.CardDb
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         BT_confirm.setOnClickListener { v ->
-            //            setAnalysisList("신한체크승인 이*동(0*1*) 08/24 13:56 8,000원 동상이몽 잔액21,845,615원")
+            setAnalysisList("신한체크승인 이*동(0*1*) 08/24 13:56 8,000원 동상이몽 잔액21,845,615원")
 //            setAnalysisList("씨티카드(7*1*)\n" +
 //                    "이＊동님\n" +
 //                    "08/19 10:03\n" +
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 //                    "개인택시한국스마트카")
 //            setAnalysisList(ET_paste.text.toString())
 
-            setAnalysisList("하나(4*9*) 승인 신*현님 9,000원 일시불 07/21 10:51 세븐일레븐미아 누적 843,970원 ")
+//            setAnalysisList("하나(4*9*) 승인 신*현님 9,000원 일시불 07/21 10:51 세븐일레븐미아 누적 843,970원 ")
         }
     }
 
@@ -29,11 +30,11 @@ class MainActivity : AppCompatActivity() {
     val cardPriceExtraTexts = listOf("일시불", "누계", "잔액", "누적")
     var checkList: MutableCollection<String>? = null
 
-    var catchCardCorpName: String? = null
+    var catchCardCorpName: String = " "
     var catchCardDate: String? = null
     var catchCardTime: String? = null
     var catchCardPrice: String? = null
-    var catchCardUsedStoreName: String? = null
+    var catchCardUsedStoreName: String = " "
 
     fun setAnalysisList(text: String) {
         val textList = text.replace("\n", " ").replace(" ", "#$#").split("#$#").filter { it != null && !it.isBlank() }
@@ -87,5 +88,9 @@ class MainActivity : AppCompatActivity() {
         Log.d("lhd_read", "catch~time~" + catchCardTime)
         Log.d("lhd_read", "catch~catchCardPrice~" + catchCardPrice)
         Log.d("lhd_read", "catch~catchCardUsedStoreName~" + catchCardUsedStoreName)
+
+        val cardDb: CardDb = CardDb()
+
+        cardDb.saveCardUsedInfo(catchCardCorpName, 0, 0, 0, catchCardUsedStoreName, "d")
     }
 }

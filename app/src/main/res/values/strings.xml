@@ -2,4 +2,5 @@
     <string name="app_name">ACM</string>
     <string name="paste_hint">카드 명세서 메세지를 넣어 주세요.</string>
     <string name="confirm">확인</string>
+    <string name="send_used_card_info">카드이용 정보 보기</string>
 </resources>

@@ -18,7 +18,6 @@
         android:id="@+id/BT_confirm"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/ET_paste"
         android:text="@string/confirm" />
 
     <TextView
@@ -31,5 +30,12 @@
         android:textColor="#ffffff"
         android:textSize="11sp" />
 
+    <Button
+        android:id="@+id/BT_send"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/send_used_card_info" />
 
 </LinearLayout>

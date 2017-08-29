@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.acm.verywild.acm.data.db.CardDb
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         BT_confirm.setOnClickListener { v ->
+
             setAnalysisList("신한체크승인 이*동(0*1*) 08/24 13:56 8,000원 동상이몽 잔액21,845,615원")
 //            setAnalysisList("씨티카드(7*1*)\n" +
 //                    "이＊동님\n" +
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
 //            setAnalysisList(ET_paste.text.toString())
 
 //            setAnalysisList("하나(4*9*) 승인 신*현님 9,000원 일시불 07/21 10:51 세븐일레븐미아 누적 843,970원 ")
+        }
+        BT_send.setOnClickListener { v ->
+            startActivity<ListActivity>()
         }
     }
 
@@ -35,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     var catchCardTime: String? = null
     var catchCardPrice: String? = null
     var catchCardUsedStoreName: String = " "
+    val cardDb: CardDb = CardDb()
 
     fun setAnalysisList(text: String) {
         val textList = text.replace("\n", " ").replace(" ", "#$#").split("#$#").filter { it != null && !it.isBlank() }
@@ -89,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("lhd_read", "catch~catchCardPrice~" + catchCardPrice)
         Log.d("lhd_read", "catch~catchCardUsedStoreName~" + catchCardUsedStoreName)
 
-        val cardDb: CardDb = CardDb()
+
 
         cardDb.saveCardUsedInfo(catchCardCorpName, 0, 0, 0, catchCardUsedStoreName, "d")
     }

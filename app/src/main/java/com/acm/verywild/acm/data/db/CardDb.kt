@@ -20,18 +20,20 @@ class CardDb(val cardDbHelper: CardDbTableHelper = CardDbTableHelper.instance) {
 
 
         insert(CardUsedInfoTable.NAME, null, setContentValues(corp, date, time, price, store, extraText))
-        getCardUsedInfoList()
     }
 
-    fun getCardUsedInfoList() = cardDbHelper.use {
+    fun getCardUsedInfoList(): List<CardUsedInfoData> = cardDbHelper.use {
 
         val info = select(CardUsedInfoTable.NAME).parseListEx { CardUsedInfoData(HashMap(it)) }
 
+        Log.d("lhd_read", "getCardUsedInfoList~${info.size}")
+
         info?.let {
             for (i in it) {
-                Log.d("lhd_read", i.corpName + " : " + i.price);
+                Log.d("lhd_read", i.corpName + " : " + i.price)
             }
         }
+        return@use info
     }
 
     private fun setContentValues(corp: String,

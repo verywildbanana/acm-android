@@ -24,7 +24,9 @@ class CardDb(val cardDbHelper: CardDbTableHelper = CardDbTableHelper.instance) {
 
     fun getCardUsedInfoList(): List<CardUsedInfoData> = cardDbHelper.use {
 
-        val info = select(CardUsedInfoTable.NAME).parseListEx { CardUsedInfoData(HashMap(it)) }
+        val info = select(CardUsedInfoTable.NAME)
+                .limit(10, 10)
+                .parseListEx { CardUsedInfoData(HashMap(it)) }
 
         Log.d("lhd_read", "getCardUsedInfoList~${info.size}")
 

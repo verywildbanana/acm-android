@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.acm.verywild.acm.data.db.CardDb
+import com.acm.verywild.acm.presentation.SearchPresent
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
+
+
+    private val presenter: SearchPresent by lazy { App.instance.component.presenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +30,10 @@ class MainActivity : AppCompatActivity() {
 //            setAnalysisList("하나(4*9*) 승인 신*현님 9,000원 일시불 07/21 10:51 세븐일레븐미아 누적 843,970원 ")
         }
         BT_send.setOnClickListener { v ->
-            startActivity<ListActivity>()
+            //            startActivity<ListActivity>()
+            presenter.searchLocale("test")
         }
+
     }
 
     val cardCorpNames = listOf("신한", "국민", "씨티")

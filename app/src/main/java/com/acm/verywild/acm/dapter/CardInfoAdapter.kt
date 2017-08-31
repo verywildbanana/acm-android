@@ -32,7 +32,7 @@ class CardInfoAdapter(val cardInfoData: List<CardUsedInfoData>, val itemClick: (
             with(cardInfo) {
                 itemView.TV_corp.text = corpName
                 itemView.TV_time.text = "${usedDate} ${usedTime}"
-                itemView.TV_price.text = price.toString()
+                itemView.TV_price.text = id.toString()
                 itemView.TV_store.text = usedStoreName
                 itemView.setOnClickListener { itemClick(this) }
             }

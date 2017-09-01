@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
         BT_send.setOnClickListener { v ->
             //            startActivity<ListActivity>()
-            presenter.searchLocale("test")
+            presenter.searchLocale("조선옥")
         }
 
     }

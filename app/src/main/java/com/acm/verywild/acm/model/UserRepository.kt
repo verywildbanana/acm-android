@@ -12,7 +12,7 @@ class UserRepository(private val searchService: SearchService) {
 
     fun searchLocale(query: String) {
         Log.d("lhd_read", "UserRepository~searchLocale")
-        searchService.searchLocale("책")
+        searchService.searchLocale(query)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t ->

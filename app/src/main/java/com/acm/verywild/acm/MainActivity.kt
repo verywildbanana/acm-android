@@ -1,16 +1,19 @@
 package com.acm.verywild.acm
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.acm.verywild.acm.data.db.CardDb
-import com.acm.verywild.acm.presentation.SearchPresent
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivityForResult
 
 class MainActivity : AppCompatActivity() {
 
-
-    private val presenter: SearchPresent by lazy { App.instance.component.presenter() }
+    companion object {
+        val SELECT_STORE = 0;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +33,20 @@ class MainActivity : AppCompatActivity() {
 //            setAnalysisList("하나(4*9*) 승인 신*현님 9,000원 일시불 07/21 10:51 세븐일레븐미아 누적 843,970원 ")
         }
         BT_send.setOnClickListener { v ->
-            //            startActivity<ListActivity>()
-            presenter.searchLocale("조선옥")
+            startActivityForResult<SearchListActivity>(SELECT_STORE, SearchListActivity.SEARCH_TEXT to "김밥천국")
+//            startActivity<SearchListActivity>(SearchListActivity.SEARCH_TEXT to "김밥천국")
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d("lhd_read", "onActivityResult_$requestCode , $resultCode")
+        when (setOf(requestCode, resultCode)) {
+            setOf(SELECT_STORE, Activity.RESULT_OK) -> Log.d("lhd_read", "onActivityResult_OK")
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     val cardCorpNames = listOf("신한", "국민", "씨티")

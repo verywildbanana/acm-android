@@ -4,9 +4,6 @@ package com.acm.verywild.acm.data.entities
  * Created by lineplus on 31/08/2017.
  */
 data class SearchData(
-        //        val title: String
-//        val link: Any,
-//        val description: Any,
         val lastBuildDate: String,
         val total: Long,
         val start: Long,

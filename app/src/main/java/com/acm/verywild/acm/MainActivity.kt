@@ -12,7 +12,7 @@ import org.jetbrains.anko.startActivityForResult
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val SELECT_STORE = 0;
+        val SELECT_STORE = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,18 +49,18 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    val cardCorpNames = listOf("신한", "국민", "씨티")
-    val cardPriceExtraTexts = listOf("일시불", "누계", "잔액", "누적")
-    var checkList: MutableCollection<String>? = null
+    private val cardCorpNames = listOf("신한", "국민", "씨티")
+    private val cardPriceExtraTexts = listOf("일시불", "누계", "잔액", "누적")
+    private var checkList: MutableCollection<String>? = null
 
-    var catchCardCorpName: String = " "
-    var catchCardDate: String? = null
-    var catchCardTime: String? = null
-    var catchCardPrice: String? = null
-    var catchCardUsedStoreName: String = " "
-    val cardDb: CardDb = CardDb()
+    private var catchCardCorpName: String = " "
+    private var catchCardDate: String? = null
+    private var catchCardTime: String? = null
+    private var catchCardPrice: String? = null
+    private var catchCardUsedStoreName: String = " "
+    private val cardDb: CardDb = CardDb()
 
-    fun setAnalysisList(text: String) {
+    private fun setAnalysisList(text: String) {
         val textList = text.replace("\n", " ").replace(" ", "#$#").split("#$#").filter { it != null && !it.isBlank() }
         checkList = mutableListOf()
         textList.forEachIndexed textLoop@ { index, searchText ->

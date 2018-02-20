@@ -44,7 +44,7 @@ class CardDb(val cardDbHelper: CardDbTableHelper = CardDbTableHelper.instance) {
                                  price: Long,
                                  store: String,
                                  extraText: String): ContentValues {
-        val cv: ContentValues = ContentValues()
+        val cv = ContentValues()
         cv.put(CardUsedInfoTable.CARD_CP_NAME, corp)
         cv.put(CardUsedInfoTable.USED_DATE, date)
         cv.put(CardUsedInfoTable.USED_TIME, time)
